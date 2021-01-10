@@ -89,8 +89,15 @@ def initialize() {
 
 //children
 def addDevice() {
-	
-    addChildDevice("CordMaster", "Ambient Weather Device", "AWTILE-$station", null, [completedSetup: true]);
+    def deviceExists = false
+    for (device in getChildDevices()) {
+        if (device.deviceNetworkId == "AWTILE-$station") {
+            deviceExists = true
+        }
+    }
+    if (!deviceExists) {
+        addChildDevice("CordMaster", "Ambient Weather Device", "AWTILE-$station", null, [completedSetup: true]);
+    }
 }
 
 //fetch functions
