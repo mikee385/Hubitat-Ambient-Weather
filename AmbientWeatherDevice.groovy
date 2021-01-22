@@ -40,75 +40,75 @@ metadata {
 }
 
 def refresh() {
-	parent.fetchNewWeather(); 
+	parent.fetchNewWeather()
 }
 
 def setWeather(weather){
-	logger("debug", "Weather: "+weather);
+	logger("debug", "Weather: "+weather)
 	
 	//Set temperature
-	sendEvent(name: "temperature", value: weather.tempf, unit: '°F', isStateChange: true);
+	sendEvent(name: "temperature", value: weather.tempf, unit: '°F')
 	
 	//Set Humidity
-	sendEvent(name: "humidity", value: weather.humidity, unit: '%', isStateChange: true);
+	sendEvent(name: "humidity", value: weather.humidity, unit: '%')
     
 	//Set DewPoint
-	sendEvent(name: "dewPoint", value: weather.dewPoint, unit:'°F', isStateChange: true);
+	sendEvent(name: "dewPoint", value: weather.dewPoint, unit:'°F')
 	
 	//Set Comfort Level 
-	float temp = 0.0;
+	float temp = 0.0
    
-	temp = (weather.dewPoint - 35);
+	temp = (weather.dewPoint - 35)
     if (temp <= 0) {
-        temp = 0.0;
+        temp = 0.0
     } else if (temp >= 40.0) {
-        temp = 100.0;
+        temp = 100.0
     } else {
-        temp = (temp/40.0)*100.0;
+        temp = (temp/40.0)*100.0
     }
-    temp = temp.round(1);
-    sendEvent(name: "comfort", value: temp, isStateChange: true);
+    temp = temp.round(1)
+    sendEvent(name: "comfort", value: temp)
 	
 	//Set Barometric Pressure
-	sendEvent(name: "pressure", value: weather.baromrelin, unit: 'in', isStateChange: true);
+	sendEvent(name: "pressure", value: weather.baromrelin, unit: 'in')
 	
 	//Set Feels Like Temperature
-	sendEvent(name: "feelsLike", value: weather.feelsLike, unit: '°F', isStateChange: true);
+	sendEvent(name: "feelsLike", value: weather.feelsLike, unit: '°F')
     
     //Rain
-	sendEvent(name: "precip_today", value: weather.dailyrainin, unit: 'in', isStateChange: true);  
-	sendEvent(name: "precip_1hr", value: weather.hourlyrainin, unit: 'in', isStateChange: true); 
+	sendEvent(name: "precip_today", value: weather.dailyrainin, unit: 'in')
+	sendEvent(name: "precip_1hr", value: weather.hourlyrainin, unit: 'in')
 	
 	//Wind
-	sendEvent(name: "wind", value: weather.windspeedmph, unit: 'mph', isStateChange: true);
-	sendEvent(name: "wind_gust", value: weather.windgustmph, unit: 'mph', isStateChange: true);
-	sendEvent(name: "wind_degree", value: weather.winddir, unit: '°', isStateChange: true);
+	sendEvent(name: "wind", value: weather.windspeedmph, unit: 'mph')
+	sendEvent(name: "wind_gust", value: weather.windgustmph, unit: 'mph')
+	sendEvent(name: "wind_degree", value: weather.winddir, unit: '°')
 	
 	temp = weather.winddir
-	if (temp < 22.5) { 		sendEvent(name:  "wind_direction", value: "North", isStateChange: true);
-					            sendEvent(name:  "wind_dir", value: "N", isStateChange: true);
-	} else if (temp < 67.5) {  sendEvent(name:  "wind_direction", value: "Northeast", isStateChange: true);
-					    		sendEvent(name:  "wind_dir", value: "NE", isStateChange: true);
-	} else if (temp < 112.5) {  sendEvent(name: "wind_direction", value: "East", isStateChange: true);
-					    		sendEvent(name:  "wind_dir", value: "E", isStateChange: true);
-	} else if (temp < 157.5) {  sendEvent(name: "wind_direction", value: "Southeast", isStateChange: true);
-					    		sendEvent(name:  "wind_dir", value: "SE", isStateChange: true);
-	} else if (temp < 202.5) {  sendEvent(name: "wind_direction", value: "South", isStateChange: true);
-					    		sendEvent(name:  "wind_dir", value: "S", isStateChange: true);
-	} else if (temp < 247.5) {  sendEvent(name: "wind_direction", value: "Southwest", isStateChange: true);
-					    		sendEvent(name:  "wind_dir", value: "SW", isStateChange: true);
-	} else if (temp < 292.5) {  sendEvent(name: "wind_direction", value: "West", isStateChange: true);
-					    		sendEvent(name:  "wind_dir", value: "W", isStateChange: true);
-	} else if (temp < 337.5) {  sendEvent(name: "wind_direction", value: "Northwest", isStateChange: true);
-					    		sendEvent(name:  "wind_dir", value: "NW", isStateChange: true);
-	} else 					 {  sendEvent(name:  "wind_direction", value: "North", isStateChange: true);
-					    		sendEvent(name:  "wind_dir", value: "N", isStateChange: true);
+	if (temp < 22.5) { 		sendEvent(name:  "wind_direction", value: "North")
+					            sendEvent(name:  "wind_dir", value: "N")
+	} else if (temp < 67.5) {  sendEvent(name:  "wind_direction", value: "Northeast")
+					    		sendEvent(name:  "wind_dir", value: "NE")
+	} else if (temp < 112.5) {  sendEvent(name: "wind_direction", value: "East")
+					    		sendEvent(name:  "wind_dir", value: "E")
+	} else if (temp < 157.5) {  sendEvent(name: "wind_direction", value: "Southeast")
+					    		sendEvent(name:  "wind_dir", value: "SE")
+	} else if (temp < 202.5) {  sendEvent(name: "wind_direction", value: "South")
+					    		sendEvent(name:  "wind_dir", value: "S")
+	} else if (temp < 247.5) {  sendEvent(name: "wind_direction", value: "Southwest")
+					    		sendEvent(name:  "wind_dir", value: "SW")
+	} else if (temp < 292.5) {  sendEvent(name: "wind_direction", value: "West")
+					    		sendEvent(name:  "wind_dir", value: "W")
+	} else if (temp < 337.5) {  sendEvent(name: "wind_direction", value: "Northwest")
+					    		sendEvent(name:  "wind_dir", value: "NW")
+	} else 					 {  sendEvent(name:  "wind_direction", value: "North")
+					    		sendEvent(name:  "wind_dir", value: "N")
 	}
 	
 	//UV and Light
-	sendEvent(name: "solarradiation", value: weather.solarradiation, isStateChange: true);
-	sendEvent(name: "illuminance", value: weather.solarradiation, isStateChange: true);
-        sendEvent(name: "uv", value: weather.uv, isStateChange: true);
+	sendEvent(name: "solarradiation", value: weather.solarradiation)
+	sendEvent(name: "illuminance", value: weather.solarradiation)
+        sendEvent(name: "uv", value: weather.uv)
 }
 
 private logger(type, msg){
