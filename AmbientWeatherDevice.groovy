@@ -1,5 +1,5 @@
 metadata {
-    definition(name: "Ambient Weather Device", namespace: "CordMaster", author: "Alden Howard") {
+    definition(name: "Ambient Weather Device", namespace: "mikee385", author: "Alden Howard and Michael Pierce") {
         capability "Temperature Measurement"
         capability "Relative Humidity Measurement"
         capability "Pressure Measurement"

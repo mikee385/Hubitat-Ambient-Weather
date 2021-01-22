@@ -1,4 +1,4 @@
-definition(name: "Ambient Weather API", namespace: "CordMaster", author: "Alden Howard", description: "A simple api for providing ambient weather access", iconUrl: "", iconX2Url: "")
+definition(name: "Ambient Weather API", namespace: "mikee385", author: "Alden Howard and Michael Pierce", description: "A simple api for providing ambient weather access", iconUrl: "", iconX2Url: "")
 
 preferences {
     page(name: "page1", title: "Log In", nextPage: "page2", uninstall: true) {

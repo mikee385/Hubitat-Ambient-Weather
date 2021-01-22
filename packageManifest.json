@@ -1,0 +1,29 @@
+{
+    "packageName": "Ambient Weather Integration",
+    "author": "Alden Howard and Michael Pierce",
+    "version": "2.1.0",
+    "minimumHEVersion": "1.0.0",
+    "licenseFile": "https://raw.githubusercontent.com/mikee385/Hubitat-Ambient-Weather/master/LICENSE",
+    "releaseNotes": "Add support for Hubitat Package Manager",
+    "dateReleased": "2021-01-21",
+    "apps": [
+        {
+            "id": "70220a84-32aa-4351-bbc8-33291e3437eb",
+            "name": "Ambient Weather API",
+            "namespace": "mikee385",
+            "location": "https://raw.githubusercontent.com/mikee385/Hubitat-Ambient-Weather/master/AmbientWeatherApp.groovy",
+            "required": true,
+            "oauth": false,
+            "primary": true
+        }
+    ],
+    "drivers": [
+        {
+            "id": "1786f44c-391b-428d-8ccb-b38fcd73efce",
+            "name": "Ambient Weather Device",
+            "namespace": "mikee385",
+            "location": "https://raw.githubusercontent.com/mikee385/Hubitat-Ambient-Weather/master/AmbientWeatherDevice.groovy",
+            "required": true
+        }
+    ]
+}
