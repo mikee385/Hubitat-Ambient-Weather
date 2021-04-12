@@ -176,6 +176,8 @@ def heartbeat() {
 
 def healthCheck() {
     state.healthStatus = "offline"
-    notifier.deviceNotification("${childDevices[0]} is offline!")
+    if (alertOffline) {
+        notifier.deviceNotification("${getLabel()} is offline!")
+    }
 }
 

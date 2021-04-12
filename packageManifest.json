@@ -1,10 +1,10 @@
 {
     "packageName": "Ambient Weather Integration",
     "author": "Alden Howard and Michael Pierce",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "minimumHEVersion": "1.0.0",
     "licenseFile": "https://raw.githubusercontent.com/mikee385/Hubitat-Ambient-Weather/master/LICENSE",
-    "releaseNotes": "Minor changes to health check",
+    "releaseNotes": "Disable offline alert using setting",
     "dateReleased": "2021-04-12",
     "apps": [
         {
