@@ -163,18 +163,19 @@ def fetchNewWeather() {
         heartbeat()
         childDevices[0].setWeather(weather)
 	} else {
+	    state.healthStatus = "unhealthy"
 	    log.error("Unable to fetch weather data")
 	}
 }
 
 def heartbeat() {
-    unschedule("offlineAlert")
-    state.offline = false
-    runIn(60*offlineDuration, offlineAlert)
+    unschedule("healthCheck")
+    state.healthStatus = "online"
+    runIn(60*offlineDuration, healthCheck)
 }
 
-def offlineAlert() {
-    state.offline = true
+def healthCheck() {
+    state.healthStatus = "offline"
     notifier.deviceNotification("${childDevices[0]} is offline!")
 }
 
