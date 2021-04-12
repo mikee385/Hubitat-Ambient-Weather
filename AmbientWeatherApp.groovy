@@ -35,6 +35,15 @@ def page2() {
 			input(name: "station", title: "Station", type: "enum", options: stationMacs, required: true)
             input(name: "refreshInterval", title: "Refresh Interval (in minutes)", type: "number", range: "1..3600", defaultValue: 1, required: true)
 		}
+		
+		section {
+            input name: "alertOffline", type: "bool", title: "Alert when offline?", defaultValue: false
+            input "offlineDuration", "number", title: "Minimum time before offline (in minutes)", required: true, defaultValue: 60
+        }
+        
+        section {
+            input "notifier", "capability.notification", title: "Notification Device", multiple: false, required: true
+        }
 	}
 }
 
@@ -43,6 +52,8 @@ def page3() {
         section {
             paragraph("Selected station: $station")
             paragraph("Refresh interval: $refreshInterval minute(s)")
+            paragraph("Offine duration: $offlineDuration minute(s)")
+            paragraph("Device to notify: $notifier")
         }
         
         section {
@@ -85,6 +96,8 @@ def initialize() {
     log.debug("Set CHRON schedule with m: $m and h: $h")
     
     schedule("0 $m $h * * ? *", fetchNewWeather)
+    
+    heartbeat()
 }
 
 //children
@@ -146,6 +159,22 @@ def fetchNewWeather() {
     
     //log.debug("Weather: " + weather)
 	
-	childDevices[0].setWeather(weather)
+    if (weather) {
+        heartbeat()
+        childDevices[0].setWeather(weather)
+	} else {
+	    log.error("Unable to fetch weather data")
+	}
+}
+
+def heartbeat() {
+    unschedule("offlineAlert")
+    state.offline = false
+    runIn(60*offlineDuration, offlineAlert)
+}
+
+def offlineAlert() {
+    state.offline = true
+    notifier.deviceNotification("${childDevices[0]} is offline!")
 }
 

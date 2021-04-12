@@ -1,11 +1,11 @@
 {
     "packageName": "Ambient Weather Integration",
     "author": "Alden Howard and Michael Pierce",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "minimumHEVersion": "1.0.0",
     "licenseFile": "https://raw.githubusercontent.com/mikee385/Hubitat-Ambient-Weather/master/LICENSE",
-    "releaseNotes": "Add support for Hubitat Package Manager",
-    "dateReleased": "2021-01-21",
+    "releaseNotes": "Add notification when offline",
+    "dateReleased": "2021-04-11",
     "apps": [
         {
             "id": "70220a84-32aa-4351-bbc8-33291e3437eb",
