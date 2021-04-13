@@ -177,7 +177,7 @@ def heartbeat() {
 def healthCheck() {
     state.healthStatus = "offline"
     if (alertOffline) {
-        notifier.deviceNotification("${getLabel()} is offline!")
+        notifier.deviceNotification("${app.getLabel()} is offline!")
     }
 }
 
