@@ -17,13 +17,19 @@ metadata {
 		attribute "pressure", "string"
 		
 		//Precipitation
+		attribute "precip_total", "number"
+		attribute "precip_month", "number"
+		attribute "precip_week", "number"
+		attribute "precip_event", "number"
         attribute "precip_today", "number"
 		attribute "precip_1hr", "number"
+		attribute "precip_time", "string"
 		
         
 		//Wind
 		attribute "wind", "number"
         attribute "wind_gust", "number"
+        attribute "wind_gust_max", "number"
         attribute "wind_degree", "number"
         attribute "wind_dir", "string"
 		attribute "wind_direction", "string"
@@ -76,12 +82,18 @@ def setWeather(weather){
 	sendEvent(name: "feelsLike", value: weather.feelsLike, unit: '°F')
     
     //Rain
+    sendEvent(name: "precip_total", value: weather.totalrainin, unit: 'in')
+    sendEvent(name: "precip_month", value: weather.monthlyrainin, unit: 'in')
+    sendEvent(name: "precip_week", value: weather.weeklyrainin, unit: 'in')
+    sendEvent(name: "precip_event", value: weather.eventrainin, unit: 'in')
 	sendEvent(name: "precip_today", value: weather.dailyrainin, unit: 'in')
 	sendEvent(name: "precip_1hr", value: weather.hourlyrainin, unit: 'in')
+	sendEvent(name: "precip_time", value: Date.parse("yyyy-MM-dd'T'HH:mm:ss.SSSX", weather.lastRain))
 	
 	//Wind
 	sendEvent(name: "wind", value: weather.windspeedmph, unit: 'mph')
 	sendEvent(name: "wind_gust", value: weather.windgustmph, unit: 'mph')
+	sendEvent(name: "wind_gust_max", value: weather.maxdailygust, unit: 'mph')
 	sendEvent(name: "wind_degree", value: weather.winddir, unit: '°')
 	
 	temp = weather.winddir
