@@ -1,11 +1,11 @@
 {
     "packageName": "Ambient Weather Integration",
     "author": "Alden Howard and Michael Pierce",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "minimumHEVersion": "1.0.0",
     "licenseFile": "https://raw.githubusercontent.com/mikee385/Hubitat-Ambient-Weather/master/LICENSE",
-    "releaseNotes": "Add additional attributes",
-    "dateReleased": "2021-06-04",
+    "releaseNotes": "Fix incorrect namespace for child device",
+    "dateReleased": "2021-06-10",
     "apps": [
         {
             "id": "70220a84-32aa-4351-bbc8-33291e3437eb",

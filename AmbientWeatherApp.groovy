@@ -109,7 +109,7 @@ def addDevice() {
         }
     }
     if (!deviceExists) {
-        addChildDevice("CordMaster", "Ambient Weather Device", "AWTILE-$station", null, [completedSetup: true])
+        addChildDevice("mikee385", "Ambient Weather Device", "AWTILE-$station", null, [completedSetup: true])
     }
 }
 
